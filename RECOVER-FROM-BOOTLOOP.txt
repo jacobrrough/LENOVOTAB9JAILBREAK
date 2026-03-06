@@ -1,0 +1,101 @@
+================================================================================
+RECOVER FROM BOOT LOOP (black screen, vibrating)
+================================================================================
+
+STEP 1: GET TO FASTBOOT MODE (do this first)
+---------------------------------------------
+The tablet is looping before Android starts. You need to force it into
+bootloader (fastboot) mode so we can fix it from the PC.
+
+1. Let the tablet run until the battery dies, OR hold POWER for 15+ seconds
+   until it turns off (might take several long presses).
+
+2. With the tablet OFF, connect it to the PC with USB (optional but helpful).
+
+3. Enter fastboot. Try these in order (hold for 10–15 seconds until screen
+   changes or stays black but PC may detect fastboot):
+   - POWER + VOLUME DOWN
+   - POWER + VOLUME UP
+   - POWER + BOTH VOLUME buttons
+   - VOLUME DOWN only (then press Power briefly)
+
+4. When you see FASTBOOT or "Download mode" or the screen stays black:
+   On the PC run:  fastboot devices
+   If you see a device ID, the tablet is in fastboot. Go to STEP 2.
+
+5. If nothing works, try RECOVERY instead:
+   Power off, then hold POWER + VOLUME UP until you see recovery menu.
+   In recovery: "Wipe data / factory reset" then "Reboot". That may fix the loop.
+
+STEP 2: FIX FROM PC (tablet in fastboot)
+----------------------------------------
+Open PowerShell in the folder with fastboot (or use full path). Run:
+
+  fastboot devices
+
+If you see your device, run the recovery script:
+
+  C:\Users\jrrou\tablet-gsi\UNBRICK-FASTBOOT.ps1
+
+That script will:
+  - Wipe data (fixes most boot loops)
+  - Optionally reflash the GSI system image if you still have system.img
+  - Reboot
+
+Or do it manually:
+  fastboot -w
+  fastboot reboot
+
+If it still loops after -w, reflash the GSI (you need system.img in tablet-gsi):
+  fastboot flash system_a C:\Users\jrrou\tablet-gsi\system.img
+  fastboot -w
+  fastboot reboot
+
+STEP 3: WHEN POWER + VOLUME DOES NOTHING
+-----------------------------------------
+The tablet may never be fully "off" while looping, so the keys don't work.
+Do this:
+
+A. LET THE BATTERY DIE (most important)
+   - Stop charging. Let it boot-loop until the battery is completely dead
+     (screen stays black, no more vibrations). Can take 1–3 hours.
+   - Do not press any buttons during this time.
+   - Once it’s fully dead, wait 10–15 minutes.
+
+B. TRY BUTTONS AGAIN FROM COLD
+   - (Optional) Plug in USB to the PC, but don’t charge yet or only briefly.
+   - Hold POWER + VOLUME DOWN and keep holding for 20–30 seconds.
+   - If the screen stays black, try: plug in the charger while still holding
+     POWER + VOL DOWN for another 15 seconds.
+   - Try POWER + VOLUME UP for 20–30 seconds.
+   - Try VOLUME DOWN only, hold 5 sec, then press and hold POWER for 15 sec.
+   - On some Lenovo tablets you must release POWER as soon as the logo
+     appears, then press VOL DOWN repeatedly to get “Fastboot”.
+
+C. LENOVO RESCUE (Software Fix) – no buttons needed if PC sees the device
+   - Download: Lenovo “Rescue and Smart Assistant” (or “Software Fix”)
+     from support.lenovo.com (search “Rescue and Smart Assistant” or
+     “Software Fix Lenovo”).
+   - Install on your Windows PC. Open the tool.
+   - Connect the tablet to the PC with USB while it is looping (or after
+     battery died and you plugged it in).
+   - The tool may detect the device when it briefly passes through a
+     connectable state during the loop (or when it powers on from dead).
+   - If it detects the tablet, follow the wizard to “Rescue” / flash stock
+     firmware. That will wipe data and install stock Android (you can
+     re-flash the GSI later if you want).
+   - If it never detects: keep the tablet plugged in, try the button combos
+     again after a full battery drain (step A).
+
+D. IF STILL NOTHING
+   - Charge the tablet (off or looping) for 2+ hours so the battery isn’t
+     low. Then repeat step B from a full power-off (let it die again if
+     needed).
+   - Search: “Lenovo [your model number] enter fastboot” or “bootloader
+     mode” for your exact device.
+   - As a last resort: Lenovo support or a repair shop can try EDL/blank
+     flash if the hardware is still good.
+
+================================================================================
+Your GSI system image (if you need to reflash): C:\Users\jrrou\tablet-gsi\system.img
+================================================================================

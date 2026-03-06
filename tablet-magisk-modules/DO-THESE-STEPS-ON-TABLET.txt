@@ -1,0 +1,52 @@
+========================================
+DO THESE STEPS ON YOUR TABLET (5 min)
+========================================
+
+I've already:
+- Downloaded Tricky Store + Play Integrity Fix module ZIPs
+- Pushed them to your tablet's Download folder
+- Cleared Google Play Store data
+
+You need to do these 4 steps ON THE TABLET:
+
+----------------------------------------
+STEP 1: Enable Zygisk in Magisk
+----------------------------------------
+1. Open the Magisk app
+2. Tap the gear icon (Settings)
+3. Turn ON "Zygisk"
+4. Reboot the tablet
+
+----------------------------------------
+STEP 2: Install Tricky Store (first!)
+----------------------------------------
+1. Open Magisk
+2. Tap "Modules" (or "Install" / bottom Modules tab)
+3. Tap "Install from storage" or "Install" and choose "Select a file"
+4. Go to Download folder
+5. Select: Tricky-Store-v1.4.1-release.zip
+6. Let it install, then tap Reboot
+
+----------------------------------------
+STEP 3: Install Play Integrity Fix
+----------------------------------------
+1. After reboot, open Magisk again
+2. Modules → Install from storage
+3. Select: PlayIntegrityFix.zip (in Download folder)
+4. Install → Reboot
+
+----------------------------------------
+STEP 4: Check result
+----------------------------------------
+1. Open Play Store and sign in if asked
+2. Install "Play Integrity API Checker" from Play Store
+3. Run the check — you want "Basic" and "Device" = PASS
+   (Strong will still FAIL — that's normal with unlocked bootloader)
+
+Done. Certification / app issues should improve. If Play Store crashes, in Magisk disable "Spoof SDK to Play Store" in the PIF module config (if it has one) and reboot.
+
+========================================
+Files on tablet: /sdcard/Download/
+  - Tricky-Store-v1.4.1-release.zip
+  - PlayIntegrityFix.zip
+========================================

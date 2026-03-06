@@ -1,0 +1,27 @@
+Lag-reduction tweaks applied via ADB (today)
+============================================
+
+Done from PC:
+--------------
+1. Animation scales set to 0.5x
+   - window_animation_scale, transition_animation_scale, animator_duration_scale
+   (UI should feel snappier immediately.)
+
+2. Background process limit
+   - Attempted (device-dependent).
+
+3. Trim app caches
+   - pm trim-caches run to free space.
+
+4. PHH Treble lag fix (with root)
+   - persist.sys.phh.disable_sf_gl_backpressure = 1
+   - persist.sys.phh.mediatek_ged_kpi = 1
+   (Reboot once so these take full effect.)
+
+5. Refresh rate
+   - Attempted min/peak 90 Hz if your display supports it.
+
+What you should do:
+-------------------
+- Reboot the tablet once. After reboot, the PHH options and cache trim will be fully in effect.
+- If you still see lag: use a static wallpaper, remove heavy widgets, and uninstall unused apps (manual steps).
